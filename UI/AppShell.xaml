@@ -7,8 +7,8 @@
     Title="UI">
 
     <ShellContent
-        Title="Home"
+        Title="Память"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"/>
 
 </Shell>

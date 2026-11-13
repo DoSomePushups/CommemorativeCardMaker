@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UI.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#F7F5FC">
+
+    <Shell.TitleView>
+        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+            <Image
+                HeightRequest="40"
+                Source="star.png"
+                WidthRequest="40" />
+            <Label
+                FontSize="26"
+                Text="Конструктор памятных карточек"
+                TextColor="#7C4DFF"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <VerticalStackLayout>
+        <Grid
+            Padding="24,16"
+            RowDefinitions="Auto,*"
+            RowSpacing="20">
+
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="Auto,*,Auto"
+                ColumnSpacing="16"
+                RowDefinitions="Auto,Auto">
+
+                <VerticalStackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Spacing="2"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        Text="Мои колоды"
+                        TextColor="#1E1B2E" />
+                    <Label
+                        FontSize="13"
+                        Text="Все ваши воспоминания — в одном месте"
+                        TextColor="#8B8698" />
+                </VerticalStackLayout>
+
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="0,16,0,0"
+                    ColumnDefinitions="*,Auto"
+                    ColumnSpacing="12">
+                    <Border
+                        Grid.Column="0"
+                        Padding="12,0"
+                        BackgroundColor="White"
+                        HeightRequest="44"
+                        Stroke="#E8E3F3"
+                        StrokeShape="RoundRectangle 12"
+                        StrokeThickness="1">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <Image
+                                Grid.Column="0"
+                                HeightRequest="16"
+                                Opacity="0.45"
+                                Source="search.png"
+                                VerticalOptions="Center"
+                                WidthRequest="16" />
+                            <Entry
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="14"
+                                Placeholder="Найти колоду"
+                                ReturnType="Search"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    <ImageButton
+                        Grid.Column="1"
+                        Padding="12"
+                        BackgroundColor="#EFE7FD"
+                        CornerRadius="12"
+                        HeightRequest="44"
+                        Source="filter.png"
+                        WidthRequest="44" />
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="LayoutStates">
+                            <VisualState Name="Narrow">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="0" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="1" />
+                                    <Setter Property="Grid.Column" Value="0" />
+                                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                                    <Setter Property="Margin" Value="0,16,0,0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Wide">
+                                <VisualState.StateTriggers>
+                                    <AdaptiveTrigger MinWindowWidth="800" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter Property="Grid.Row" Value="0" />
+                                    <Setter Property="Grid.Column" Value="1" />
+                                    <Setter Property="Grid.ColumnSpan" Value="1" />
+                                    <Setter Property="Margin" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Grid>
+
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Padding="18,0"
+                    BackgroundColor="#7C4DFF"
+                    CornerRadius="12"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HeightRequest="44"
+                    Text="+ Новая карта"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Grid>
+        </Grid>
+        <ScrollView Margin="20,0">
+            <FlexLayout
+                Margin="24,16"
+                AlignItems="Start"
+                BindableLayout.ItemsSource="{Binding Decks}"
+                Direction="Row"
+                JustifyContent="Start"
+                Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout
+                            Margin="0,0,16,20"
+                            Spacing="8"
+                            WidthRequest="120">
+                            <Grid HeightRequest="150" WidthRequest="150">
+                                <Border
+                                    BackgroundColor="#E2D3F8"
+                                    HeightRequest="140"
+                                    HorizontalOptions="Start"
+                                    IsVisible="{Binding HasMultipleCards}"
+                                    Rotation="8"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    TranslationX="10"
+                                    TranslationY="4"
+                                    VerticalOptions="Start"
+                                    WidthRequest="100" />
+                                <Border
+                                    BackgroundColor="#D3BEF5"
+                                    HeightRequest="140"
+                                    HorizontalOptions="Start"
+                                    IsVisible="{Binding HasTwoCards}"
+                                    Rotation="4"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    TranslationX="5"
+                                    TranslationY="2"
+                                    VerticalOptions="Start"
+                                    WidthRequest="100" />
+                                <Border
+                                    BackgroundColor="{Binding Color}"
+                                    HeightRequest="140"
+                                    HorizontalOptions="Start"
+                                    StrokeShape="RoundRectangle 14"
+                                    StrokeThickness="0"
+                                    VerticalOptions="Start"
+                                    WidthRequest="100">
+                                    <Border.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding IsEmpty}"
+                                            TargetType="Border"
+                                            Value="True">
+                                            <Setter Property="BackgroundColor" Value="Transparent" />
+                                            <Setter Property="Stroke" Value="#C9B8E8" />
+                                            <Setter Property="StrokeThickness" Value="2" />
+                                            <Setter Property="StrokeDashArray" Value="6,4" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <Image
+                                        HeightRequest="28"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding IconSource}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="28" />
+                                </Border>
+                            </Grid>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                Text="{Binding Name}"
+                                TextColor="#1E1B2E" />
+                            <Label
+                                FontSize="12"
+                                Text="{Binding Caption}"
+                                TextColor="#8B8698" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
