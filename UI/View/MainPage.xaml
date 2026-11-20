@@ -9,22 +9,14 @@
         <Grid
             Padding="24,16"
             RowDefinitions="Auto,*"
-            RowSpacing="-6">
-
-            <HorizontalStackLayout
+            RowSpacing="6">
+            <Label
                 Grid.Row="0"
-                Spacing="4"
-                VerticalOptions="Center">
-                <Image
-                    HeightRequest="40"
-                    Source="star.png"
-                    WidthRequest="24" />
-                <Label
-                    FontSize="20"
-                    Text="Конструктор памятных карточек"
-                    TextColor="#7C4DFF"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="✦ ПАМЯТЬ"
+                TextColor="#7651C2"
+                VerticalOptions="Center" />
             <Grid
                 Grid.Row="1"
                 ColumnDefinitions="Auto,*,Auto"
