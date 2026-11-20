@@ -19,9 +19,9 @@ public class DecksViewModel
             Decks.Add(new DeckItemViewModel(deck.Id, deck.Name, deck.Count, deck.Style, deck.Style == DeckStyle.Main));
     }
 
-    private Task OpenDeckAsync(DeckId deckId)
+    private async Task OpenDeckAsync(DeckId deckId)
     {
         Debug.WriteLine(deckId);
-        return Task.CompletedTask;
+        await Shell.Current.GoToAsync($"{nameof(DeckPage)}?deckId={deckId.Value}");
     }
 }
