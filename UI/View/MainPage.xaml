@@ -5,28 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#F7F5FC">
 
-    <Shell.TitleView>
-        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
-            <Image
-                HeightRequest="40"
-                Source="star.png"
-                WidthRequest="40" />
-            <Label
-                FontSize="26"
-                Text="Конструктор памятных карточек"
-                TextColor="#7C4DFF"
-                VerticalOptions="Center" />
-        </HorizontalStackLayout>
-    </Shell.TitleView>
-
     <VerticalStackLayout>
         <Grid
             Padding="24,16"
             RowDefinitions="Auto,*"
-            RowSpacing="20">
+            RowSpacing="-6">
 
-            <Grid
+            <HorizontalStackLayout
                 Grid.Row="0"
+                Spacing="4"
+                VerticalOptions="Center">
+                <Image
+                    HeightRequest="40"
+                    Source="star.png"
+                    WidthRequest="24" />
+                <Label
+                    FontSize="20"
+                    Text="Конструктор памятных карточек"
+                    TextColor="#7C4DFF"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Grid
+                Grid.Row="1"
                 ColumnDefinitions="Auto,*,Auto"
                 ColumnSpacing="16"
                 RowDefinitions="Auto,Auto">
