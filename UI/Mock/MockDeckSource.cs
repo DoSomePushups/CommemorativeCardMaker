@@ -16,7 +16,7 @@ internal static class MockDeckSource
         main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C1")));
         main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C2")));
         main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C3")));
-        games.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C4")));
+        games.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C1")));
         _idDecks.Add(main.Id, main);
         _idDecks.Add(games.Id, games);
         _idDecks.Add(books.Id, books);
