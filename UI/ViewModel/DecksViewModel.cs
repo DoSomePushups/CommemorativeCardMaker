@@ -1,18 +1,27 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Windows.Input;
 using Domain;
 
 namespace UI;
 
 public class DecksViewModel
 {
+    public ICommand OpenDeckCommand { get; }
     public ObservableCollection<DeckItemViewModel> Decks { get; }
 
     // Тест на моковых данных
     public DecksViewModel()
     {
+        OpenDeckCommand = new Command<DeckId>(async id => await OpenDeckAsync(id));
         Decks = [];
-        Decks.Add(new DeckItemViewModel(new(Guid.NewGuid()), "Main", 12, DeckStyle.Main, true));
-        Decks.Add(new DeckItemViewModel(new(Guid.NewGuid()), "Games", 2, DeckStyle.Game, false));
-        Decks.Add(new DeckItemViewModel(new(Guid.NewGuid()), "Books", 0, DeckStyle.Empty, false));
+        foreach (var deck in MockDeckSource.Decks)
+            Decks.Add(new DeckItemViewModel(deck.Id, deck.Name, deck.Count, deck.Style, deck.Style == DeckStyle.Main));
+    }
+
+    private Task OpenDeckAsync(DeckId deckId)
+    {
+        Debug.WriteLine(deckId);
+        return Task.CompletedTask;
     }
 }
