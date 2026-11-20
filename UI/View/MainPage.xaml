@@ -3,6 +3,7 @@
     x:Class="UI.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="decksPage"
     BackgroundColor="#F7F5FC">
 
     <VerticalStackLayout>
@@ -136,6 +137,9 @@
                             Margin="0,0,16,20"
                             Spacing="8"
                             WidthRequest="120">
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.OpenDeckCommand, Source={x:Reference decksPage}}" CommandParameter="{Binding Id}" />
+                            </VerticalStackLayout.GestureRecognizers>
                             <Grid HeightRequest="150" WidthRequest="150">
                                 <Border
                                     BackgroundColor="#E2D3F8"
