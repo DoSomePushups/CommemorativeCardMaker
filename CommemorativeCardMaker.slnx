@@ -1,7 +1,9 @@
 <Solution>
   <Project Path="Application/Application.csproj" />
   <Project Path="Domain/Domain.csproj" />
-  <Project Path="Infrastructure/Infrastructure.csproj" />
+  <Project Path="Infrastructure/Infrastructure.csproj">
+    <BuildDependency Project="Domain/Domain.csproj" />
+  </Project>
   <Project Path="UI/UI.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
