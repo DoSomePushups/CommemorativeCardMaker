@@ -1,7 +1,7 @@
 ﻿namespace Domain;
 
-public abstract class Card<TCard>(string name, HashSet<Attribute>? attributes = null) 
-    : Entity<CardId>(new(Guid.NewGuid()))
+public abstract class Card<TCard>(string name, HashSet<Attribute>? attributes = null, CardId? id = null) 
+    : Entity<CardId>(id ?? new(Guid.NewGuid()))
     where TCard : Card<TCard>
 {
     private readonly HashSet<Attribute> _attributes = attributes ?? [];
