@@ -10,17 +10,18 @@ internal static class MockDeckSource
 
     static MockDeckSource()
     {
-        var main = new Deck("Main", style: DeckStyle.Main, id: new(Guid.Parse("00000000-0000-0000-0000-000000000000")));
-        var games = new Deck("Games", style: DeckStyle.Game, id: new(Guid.Parse("00000000-0000-0000-0000-000000000001")));
-        var books = new Deck("Books", id: new(Guid.Parse("00000000-0000-0000-0000-000000000002")));
-        var birthdays = new Deck("Books", id: new(Guid.Parse("00000000-0000-0000-0000-000000000003")));
-        main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C1")));
-        main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C2")));
-        main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C3")));
-        main.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C4")));
-        games.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C1")));
-        games.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C2")));
-        books.AddCard(new(Guid.Parse("00000000-0000-0000-0000-0000000000C3")));
+        var main = new Deck("Main", style: DeckStyle.Main, id: MockIds.Main);
+        var books = new Deck("Books", id: MockIds.Books);
+        var games = new Deck("Games", style: DeckStyle.Game, id: MockIds.Games);
+        var birthdays = new Deck("Birthdays", id: MockIds.Birthdays);
+        main.AddCard(MockIds.LittlePrince);
+        main.AddCard(MockIds.BloodMeridian);
+        main.AddCard(MockIds.TheLastOfTheMohicans);
+        main.AddCard(MockIds.DiscoElysium);
+        books.AddCard(MockIds.LittlePrince);
+        books.AddCard(MockIds.BloodMeridian);
+        books.AddCard(MockIds.TheLastOfTheMohicans);
+        games.AddCard(MockIds.DiscoElysium);
         _idDecks.Add(main.Id, main);
         _idDecks.Add(games.Id, games);
         _idDecks.Add(books.Id, books);
