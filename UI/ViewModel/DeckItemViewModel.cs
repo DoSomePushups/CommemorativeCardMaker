@@ -22,7 +22,7 @@ public class DeckItemViewModel
     {
         Id = id;
         Name = name;
-        Caption = BuildCaption(cardCount, isMain);
+        Caption = DeckCaption.Build(cardCount, isMain);
         IsEmpty = cardCount == 0;
 
         var colorIcon = GetMatchingColorIcon(style);
@@ -33,11 +33,6 @@ public class DeckItemViewModel
         HasTwoCards = cardCount > 1;
         HasMultipleCards = cardCount > 2;
     }
-
-    private string BuildCaption(int count, bool isMain)
-        => isMain
-            ? $"Все карточки · {count}"
-            : $"{count} карточек";
 
     private (Color Color, string Icon) GetMatchingColorIcon(
         DeckStyle style) => style switch
