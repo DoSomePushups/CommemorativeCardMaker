@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Domain;
+using System.Collections.ObjectModel;
 
 namespace UI;
 
@@ -10,6 +11,8 @@ public partial class DeckViewModel : ObservableObject, IQueryAttributable
 
     [ObservableProperty]
     private string _caption = string.Empty;
+
+    public ObservableCollection<CardViewModel> Cards { get; } = [];
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -24,6 +27,11 @@ public partial class DeckViewModel : ObservableObject, IQueryAttributable
     {
         var deck = MockDeckSource.FindById(id)
             ?? throw new InvalidOperationException($"Deck with id {id} wasn't found");
+        foreach (var card in MockCardSource.FindByIds(deck.Cards))
+        {
+            if (card is not null)
+                Cards.Add(new(card.Id, card.Name));
+        }
         Name = deck.Name;
         Caption = DeckCaption.Build(deck.Count, deck.Style == DeckStyle.Main);
     }

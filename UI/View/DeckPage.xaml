@@ -9,65 +9,6 @@
     x:DataType="local:DeckViewModel"
     BackgroundColor="#F7F5FC">
 
-    <ContentPage.Resources>
-
-        <!--  Временные данные для показа внешнего вида карточек  -->
-        <x:Array x:Key="ExampleCards" Type="{x:Type Label}">
-
-            <Label
-                AutomationId="А. де Сент-Экзюпери"
-                BackgroundColor="#D7C7EE"
-                Text="Маленький принц" />
-
-            <Label
-                AutomationId="Джейн Остин"
-                BackgroundColor="#EBC7DA"
-                Text="Гордость и предубеждение" />
-
-            <Label
-                AutomationId="Ф. Бёрнетт"
-                BackgroundColor="#CCE8D9"
-                Text="Тайный сад" />
-
-            <Label
-                AutomationId="Харуки Мураками"
-                BackgroundColor="#C7E1ED"
-                Text="Норвежский лес" />
-
-            <Label
-                AutomationId="Луиза Мэй Олкотт"
-                BackgroundColor="#F1D9CD"
-                Text="Маленькие женщины" />
-
-            <Label
-                AutomationId="Рэй Брэдбери"
-                BackgroundColor="#DDD0EC"
-                Text="451° по Фаренгейту" />
-
-            <Label
-                AutomationId="Пауло Коэльо"
-                BackgroundColor="#CCE8D9"
-                Text="Алхимик" />
-
-            <Label
-                AutomationId="Шарлотта Бронте"
-                BackgroundColor="#EBC7DA"
-                Text="Джейн Эйр" />
-
-            <Label
-                AutomationId="Харпер Ли"
-                BackgroundColor="#E8E1C9"
-                Text="Убить пересмешника" />
-
-            <Label
-                AutomationId="Дж. Сэлинджер"
-                BackgroundColor="#C7E1ED"
-                Text="Над пропастью во ржи" />
-
-        </x:Array>
-
-    </ContentPage.Resources>
-
     <ScrollView>
 
         <VerticalStackLayout Padding="48,32" Spacing="16">
@@ -121,33 +62,32 @@
 
             </Grid>
 
-            <!--  Сетка примеров  -->
             <FlexLayout
                 Margin="0,12,0,0"
+                AlignContent="SpaceEvenly"
                 AlignItems="Start"
-                BindableLayout.ItemsSource="{StaticResource ExampleCards}"
+                BindableLayout.ItemsSource="{Binding Cards}"
                 Direction="Row"
-                JustifyContent="Start"
+                JustifyContent="Center"
                 Wrap="Wrap">
 
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="local:CardViewModel">
 
                         <Border
-                            Margin="0,0,16,24"
+                            Margin="8,0,8,24"
                             Padding="10"
                             BackgroundColor="White"
-                            HeightRequest="210"
+                            HeightRequest="420"
                             Stroke="#EEE9F4"
                             StrokeShape="RoundRectangle 12"
                             StrokeThickness="1"
-                            WidthRequest="150">
+                            WidthRequest="300">
 
                             <VerticalStackLayout Spacing="5">
 
-                                <!--  Временная обложка в цветах макета  -->
                                 <Border
-                                    BackgroundColor="{Binding BackgroundColor}"
+                                    BackgroundColor="#D7C7EE"
                                     HeightRequest="105"
                                     StrokeShape="RoundRectangle 8"
                                     StrokeThickness="0">
@@ -187,17 +127,17 @@
 
                                 <Label
                                     FontAttributes="Bold"
-                                    FontSize="11"
+                                    FontSize="20"
                                     LineBreakMode="TailTruncation"
                                     MaxLines="2"
-                                    Text="{Binding Text}"
+                                    Text="{Binding Name}"
                                     TextColor="#1E1B2E" />
 
                                 <Label
                                     FontSize="9"
                                     LineBreakMode="TailTruncation"
                                     MaxLines="1"
-                                    Text="{Binding AutomationId}"
+                                    Text="Автор"
                                     TextColor="#8B8698" />
 
                                 <Label
@@ -221,7 +161,7 @@
             <Label
                 FontSize="11"
                 HorizontalTextAlignment="Center"
-                Text="Прокрутите вниз, чтобы увидеть остальные карточки"
+                Text="Конец"
                 TextColor="#AAA3B3" />
 
         </VerticalStackLayout>
