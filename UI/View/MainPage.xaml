@@ -3,12 +3,14 @@
     x:Class="UI.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UI"
     x:Name="decksPage"
+    x:DataType="local:DecksViewModel"
     BackgroundColor="#F7F5FC">
 
     <VerticalStackLayout>
 
-        <!-- Верхняя часть: название, поиск и кнопка -->
+        <!--  Верхняя часть: название, поиск и кнопка  -->
         <Grid
             Padding="24,16"
             RowDefinitions="Auto,*"
@@ -46,7 +48,7 @@
                         TextColor="#8B8698" />
                 </VerticalStackLayout>
 
-                <!-- Поиск и кнопка фильтра -->
+                <!--  Поиск и кнопка фильтра  -->
                 <Grid
                     Grid.Row="1"
                     Grid.Column="0"
@@ -54,7 +56,6 @@
                     Margin="0,16,0,0"
                     ColumnDefinitions="*,Auto"
                     ColumnSpacing="12">
-
                     <Border
                         Grid.Column="0"
                         Padding="12,0"
@@ -64,9 +65,7 @@
                         StrokeShape="RoundRectangle 12"
                         StrokeThickness="1">
 
-                        <Grid
-                            ColumnDefinitions="Auto,*"
-                            ColumnSpacing="8">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
 
                             <Image
                                 Grid.Column="0"
@@ -143,18 +142,18 @@
             </Grid>
         </Grid>
 
-        <!-- Белая область с колодами -->
+        <!--  Белая область с колодами  -->
         <Border
             Margin="24,0"
             Padding="20"
             BackgroundColor="White"
             MinimumHeightRequest="450"
-            StrokeThickness="0"
-            StrokeShape="RoundRectangle 24">
+            StrokeShape="RoundRectangle 24"
+            StrokeThickness="0">
 
             <VerticalStackLayout Spacing="16">
 
-                <!-- Заголовок и кнопка новой колоды -->
+                <!--  Заголовок и кнопка новой колоды  -->
                 <Grid ColumnDefinitions="*,Auto">
 
                     <Label
@@ -177,7 +176,7 @@
                         TextColor="White" />
                 </Grid>
 
-                <!-- Список колод -->
+                <!--  Список колод  -->
                 <ScrollView Margin="20,0">
 
                     <FlexLayout
@@ -189,25 +188,21 @@
                         Wrap="Wrap">
 
                         <BindableLayout.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="local:DeckItemViewModel">
 
                                 <VerticalStackLayout
                                     Margin="0,0,16,20"
                                     Spacing="8"
                                     WidthRequest="120">
 
-                                    <!-- Переход по нажатию на колоду -->
+                                    <!--  Переход по нажатию на колоду  -->
                                     <VerticalStackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.OpenDeckCommand, Source={x:Reference decksPage}}"
-                                            CommandParameter="{Binding Id}" />
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenDeckCommand, Source={x:Reference decksPage}}" CommandParameter="{Binding Id}" />
                                     </VerticalStackLayout.GestureRecognizers>
 
-                                    <Grid
-                                        HeightRequest="150"
-                                        WidthRequest="150">
+                                    <Grid HeightRequest="150" WidthRequest="150">
 
-                                        <!-- Задняя карточка стопки -->
+                                        <!--  Задняя карточка стопки  -->
                                         <Border
                                             BackgroundColor="#E2D3F8"
                                             HeightRequest="140"
@@ -221,7 +216,7 @@
                                             VerticalOptions="Start"
                                             WidthRequest="100" />
 
-                                        <!-- Средняя карточка стопки -->
+                                        <!--  Средняя карточка стопки  -->
                                         <Border
                                             BackgroundColor="#D3BEF5"
                                             HeightRequest="140"
@@ -235,7 +230,7 @@
                                             VerticalOptions="Start"
                                             WidthRequest="100" />
 
-                                        <!-- Передняя карточка -->
+                                        <!--  Передняя карточка  -->
                                         <Border
                                             BackgroundColor="{Binding Color}"
                                             HeightRequest="140"
@@ -251,21 +246,13 @@
                                                     TargetType="Border"
                                                     Value="True">
 
-                                                    <Setter
-                                                        Property="BackgroundColor"
-                                                        Value="Transparent" />
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
 
-                                                    <Setter
-                                                        Property="Stroke"
-                                                        Value="#C9B8E8" />
+                                                    <Setter Property="Stroke" Value="#C9B8E8" />
 
-                                                    <Setter
-                                                        Property="StrokeThickness"
-                                                        Value="2" />
+                                                    <Setter Property="StrokeThickness" Value="2" />
 
-                                                    <Setter
-                                                        Property="StrokeDashArray"
-                                                        Value="6,4" />
+                                                    <Setter Property="StrokeDashArray" Value="6,4" />
 
                                                 </DataTrigger>
                                             </Border.Triggers>
@@ -279,7 +266,7 @@
                                         </Border>
                                     </Grid>
 
-                                    <!-- Название и количество карточек -->
+                                    <!--  Название и количество карточек  -->
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="15"
