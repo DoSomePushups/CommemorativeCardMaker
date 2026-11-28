@@ -4,65 +4,65 @@
     x:Class="UI.DeckPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UI"
     Title="Колода"
+    x:DataType="local:DeckViewModel"
     BackgroundColor="#F7F5FC">
 
     <ContentPage.Resources>
 
-        <!-- Временные данные для показа внешнего вида карточек -->
-        <x:Array
-            x:Key="ExampleCards"
-            Type="{x:Type Label}">
+        <!--  Временные данные для показа внешнего вида карточек  -->
+        <x:Array x:Key="ExampleCards" Type="{x:Type Label}">
 
             <Label
-                Text="Маленький принц"
                 AutomationId="А. де Сент-Экзюпери"
-                BackgroundColor="#D7C7EE" />
+                BackgroundColor="#D7C7EE"
+                Text="Маленький принц" />
 
             <Label
-                Text="Гордость и предубеждение"
                 AutomationId="Джейн Остин"
-                BackgroundColor="#EBC7DA" />
+                BackgroundColor="#EBC7DA"
+                Text="Гордость и предубеждение" />
 
             <Label
-                Text="Тайный сад"
                 AutomationId="Ф. Бёрнетт"
-                BackgroundColor="#CCE8D9" />
+                BackgroundColor="#CCE8D9"
+                Text="Тайный сад" />
 
             <Label
-                Text="Норвежский лес"
                 AutomationId="Харуки Мураками"
-                BackgroundColor="#C7E1ED" />
+                BackgroundColor="#C7E1ED"
+                Text="Норвежский лес" />
 
             <Label
-                Text="Маленькие женщины"
                 AutomationId="Луиза Мэй Олкотт"
-                BackgroundColor="#F1D9CD" />
+                BackgroundColor="#F1D9CD"
+                Text="Маленькие женщины" />
 
             <Label
-                Text="451° по Фаренгейту"
                 AutomationId="Рэй Брэдбери"
-                BackgroundColor="#DDD0EC" />
+                BackgroundColor="#DDD0EC"
+                Text="451° по Фаренгейту" />
 
             <Label
-                Text="Алхимик"
                 AutomationId="Пауло Коэльо"
-                BackgroundColor="#CCE8D9" />
+                BackgroundColor="#CCE8D9"
+                Text="Алхимик" />
 
             <Label
-                Text="Джейн Эйр"
                 AutomationId="Шарлотта Бронте"
-                BackgroundColor="#EBC7DA" />
+                BackgroundColor="#EBC7DA"
+                Text="Джейн Эйр" />
 
             <Label
-                Text="Убить пересмешника"
                 AutomationId="Харпер Ли"
-                BackgroundColor="#E8E1C9" />
+                BackgroundColor="#E8E1C9"
+                Text="Убить пересмешника" />
 
             <Label
-                Text="Над пропастью во ржи"
                 AutomationId="Дж. Сэлинджер"
-                BackgroundColor="#C7E1ED" />
+                BackgroundColor="#C7E1ED"
+                Text="Над пропастью во ржи" />
 
         </x:Array>
 
@@ -70,11 +70,9 @@
 
     <ScrollView>
 
-        <VerticalStackLayout
-            Padding="48,32"
-            Spacing="16">
+        <VerticalStackLayout Padding="48,32" Spacing="16">
 
-            <!-- Верхняя подпись -->
+            <!--  Верхняя подпись  -->
             <Label
                 FontAttributes="Bold"
                 FontSize="16"
@@ -91,24 +89,20 @@
 
             </Label>
 
-            <!-- Заголовок и кнопка -->
-            <Grid
-                ColumnDefinitions="*,Auto"
-                ColumnSpacing="16">
+            <!--  Заголовок и кнопка  -->
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
 
-                <VerticalStackLayout
-                    Grid.Column="0"
-                    Spacing="4">
+                <VerticalStackLayout Grid.Column="0" Spacing="4">
 
                     <Label
                         FontAttributes="Bold"
                         FontSize="30"
-                        Text="Main"
+                        Text="{Binding Name}"
                         TextColor="#1E1B2E" />
 
                     <Label
                         FontSize="13"
-                        Text="Все карточки · 12"
+                        Text="{Binding Caption}"
                         TextColor="#8B8698" />
 
                 </VerticalStackLayout>
@@ -127,7 +121,7 @@
 
             </Grid>
 
-            <!-- Сетка примеров -->
+            <!--  Сетка примеров  -->
             <FlexLayout
                 Margin="0,12,0,0"
                 AlignItems="Start"
@@ -151,12 +145,12 @@
 
                             <VerticalStackLayout Spacing="5">
 
-                                <!-- Временная обложка в цветах макета -->
+                                <!--  Временная обложка в цветах макета  -->
                                 <Border
                                     BackgroundColor="{Binding BackgroundColor}"
                                     HeightRequest="105"
-                                    StrokeThickness="0"
-                                    StrokeShape="RoundRectangle 8">
+                                    StrokeShape="RoundRectangle 8"
+                                    StrokeThickness="0">
 
                                     <Grid>
 
@@ -171,11 +165,11 @@
                                             <Grid>
 
                                                 <Ellipse
+                                                    Margin="0,12,0,0"
                                                     Fill="#F7E9E4"
                                                     HeightRequest="28"
                                                     HorizontalOptions="Center"
                                                     VerticalOptions="Start"
-                                                    Margin="0,12,0,0"
                                                     WidthRequest="28" />
 
                                                 <Label
