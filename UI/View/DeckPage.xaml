@@ -1,12 +1,235 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UI.DeckPage"
-             Title="DeckPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+<ContentPage
+    x:Class="UI.DeckPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Колода"
+    BackgroundColor="#F7F5FC">
+
+    <ContentPage.Resources>
+
+        <!-- Временные данные для показа внешнего вида карточек -->
+        <x:Array
+            x:Key="ExampleCards"
+            Type="{x:Type Label}">
+
+            <Label
+                Text="Маленький принц"
+                AutomationId="А. де Сент-Экзюпери"
+                BackgroundColor="#D7C7EE" />
+
+            <Label
+                Text="Гордость и предубеждение"
+                AutomationId="Джейн Остин"
+                BackgroundColor="#EBC7DA" />
+
+            <Label
+                Text="Тайный сад"
+                AutomationId="Ф. Бёрнетт"
+                BackgroundColor="#CCE8D9" />
+
+            <Label
+                Text="Норвежский лес"
+                AutomationId="Харуки Мураками"
+                BackgroundColor="#C7E1ED" />
+
+            <Label
+                Text="Маленькие женщины"
+                AutomationId="Луиза Мэй Олкотт"
+                BackgroundColor="#F1D9CD" />
+
+            <Label
+                Text="451° по Фаренгейту"
+                AutomationId="Рэй Брэдбери"
+                BackgroundColor="#DDD0EC" />
+
+            <Label
+                Text="Алхимик"
+                AutomationId="Пауло Коэльо"
+                BackgroundColor="#CCE8D9" />
+
+            <Label
+                Text="Джейн Эйр"
+                AutomationId="Шарлотта Бронте"
+                BackgroundColor="#EBC7DA" />
+
+            <Label
+                Text="Убить пересмешника"
+                AutomationId="Харпер Ли"
+                BackgroundColor="#E8E1C9" />
+
+            <Label
+                Text="Над пропастью во ржи"
+                AutomationId="Дж. Сэлинджер"
+                BackgroundColor="#C7E1ED" />
+
+        </x:Array>
+
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="48,32"
+            Spacing="16">
+
+            <!-- Верхняя подпись -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="✦ ПАМЯТЬ"
+                TextColor="#7651C2" />
+            <Label
+                FontSize="13"
+                Text="← Все колоды"
+                TextColor="#8D65CB">
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnBackToDecksTapped" />
+                </Label.GestureRecognizers>
+
+            </Label>
+
+            <!-- Заголовок и кнопка -->
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="16">
+
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    Spacing="4">
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        Text="Main"
+                        TextColor="#1E1B2E" />
+
+                    <Label
+                        FontSize="13"
+                        Text="Все карточки · 12"
+                        TextColor="#8B8698" />
+
+                </VerticalStackLayout>
+
+                <Button
+                    Grid.Column="1"
+                    Padding="18,0"
+                    BackgroundColor="#8D65CB"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    HeightRequest="40"
+                    Text="+ Добавить карточку"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+            </Grid>
+
+            <!-- Сетка примеров -->
+            <FlexLayout
+                Margin="0,12,0,0"
+                AlignItems="Start"
+                BindableLayout.ItemsSource="{StaticResource ExampleCards}"
+                Direction="Row"
+                JustifyContent="Start"
+                Wrap="Wrap">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,16,24"
+                            Padding="10"
+                            BackgroundColor="White"
+                            HeightRequest="210"
+                            Stroke="#EEE9F4"
+                            StrokeShape="RoundRectangle 12"
+                            StrokeThickness="1"
+                            WidthRequest="150">
+
+                            <VerticalStackLayout Spacing="5">
+
+                                <!-- Временная обложка в цветах макета -->
+                                <Border
+                                    BackgroundColor="{Binding BackgroundColor}"
+                                    HeightRequest="105"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 8">
+
+                                    <Grid>
+
+                                        <Border
+                                            BackgroundColor="#9782B0"
+                                            HeightRequest="82"
+                                            HorizontalOptions="Center"
+                                            StrokeThickness="0"
+                                            VerticalOptions="Center"
+                                            WidthRequest="54">
+
+                                            <Grid>
+
+                                                <Ellipse
+                                                    Fill="#F7E9E4"
+                                                    HeightRequest="28"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Start"
+                                                    Margin="0,12,0,0"
+                                                    WidthRequest="28" />
+
+                                                <Label
+                                                    FontSize="34"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="◆"
+                                                    TextColor="#C5B5CB"
+                                                    VerticalOptions="End" />
+
+                                            </Grid>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="11"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Text="{Binding Text}"
+                                    TextColor="#1E1B2E" />
+
+                                <Label
+                                    FontSize="9"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1"
+                                    Text="{Binding AutomationId}"
+                                    TextColor="#8B8698" />
+
+                                <Label
+                                    FontSize="10"
+                                    Text="★ 4,8"
+                                    TextColor="#9674C9" />
+
+                                <Label
+                                    FontSize="9"
+                                    Text="Добавлено 10.11.2026"
+                                    TextColor="#B2ACBA" />
+
+                            </VerticalStackLayout>
+                        </Border>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </FlexLayout>
+
+            <Label
+                FontSize="11"
+                HorizontalTextAlignment="Center"
+                Text="Прокрутите вниз, чтобы увидеть остальные карточки"
+                TextColor="#AAA3B3" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
